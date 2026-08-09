@@ -482,13 +482,19 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
       </div>
 
       <div class="card">
-        <form onsubmit="sendMail(event)">
-          <input id="name" type="text" placeholder="Your Name" required>
-          <input id="email" type="email" placeholder="Your Email" required>
-          <input id="subject" type="text" placeholder="Subject" required>
-          <textarea id="message" placeholder="Your Message" required></textarea>
-          <button class="btn primary" type="submit">Send Message →</button>
-        </form>
+        <form onsubmit="sendWhatsApp(event)">
+  <input id="name" type="text" placeholder="Your Name" required>
+
+  <input id="email" type="email" placeholder="Your Email" required>
+
+  <input id="subject" type="text" placeholder="Subject" required>
+
+  <textarea id="message" placeholder="Your Message" required></textarea>
+
+  <button class="btn primary" type="submit">
+    Send on WhatsApp →
+  </button>
+</form>
       </div>
     </div>
   </div>
@@ -510,14 +516,33 @@ function toggleMenu(){
 document.querySelectorAll('.navlinks a').forEach(a=>{
   a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open'));
 });
-function sendMail(e){
+function sendWhatsApp(e) {
   e.preventDefault();
-  const name=document.getElementById('name').value;
-  const email=document.getElementById('email').value;
-  const subject=document.getElementById('subject').value;
-  const message=document.getElementById('message').value;
-  const body=`Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
-  window.location.href=`mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const subject = document.getElementById("subject").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  const whatsappNumber = "917566643157";
+
+  const text =
+`🔔 NEW WEBSITE ENQUIRY
+
+👤 Name: ${name}
+📧 Email: ${email}
+📌 Subject: ${subject}
+
+💬 Message:
+${message}
+
+--------------------
+Sent from Ram Lodhi HR Portfolio`;
+
+  const whatsappURL =
+    "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(text);
+
+  window.open(whatsappURL, "_blank");
 }
 </script>
 
